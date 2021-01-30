@@ -1,0 +1,154 @@
+/*Styles for all pages */
+.main-container{
+    margin: 0;
+    padding: 0;
+/*    font-family: 'Montserrat', sans-serif; */
+
+font-family: 'Changa', sans-serif;
+
+    display:flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+
+.image{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+
+
+/*Styles for log in page only */
+.invalid{
+    border-color: red;
+}
+
+#login{
+    align-self: center;
+    border-radius: 10px;
+    margin: auto;
+    width: 30vw;
+    height: 30vh;
+    padding: 10px;
+    font-size: 2rem;
+    margin-top: 15%;
+    padding-bottom: 50px;
+    box-shadow: 0 0 20px #5c41d6c7;
+
+}
+
+input{
+    padding-top: 10px;
+    font-size: 1rem;
+    border: 2px solid #5c41d6;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 40%;
+    text-align: center;
+}
+
+#username{
+
+    height: 35px;
+}
+
+#channel{
+    height: 35px;
+}
+
+#join{
+    width: 40%;
+    height: 50px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+/*Styles for video chat page only --left pane */
+#left-pane{
+    padding: 4px;
+    width: 10%;
+    height: 98vh;
+    box-shadow: 0 0 20px #5c41d67e;
+    font-size: 1.5rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#controls{
+    margin-top: 5vh;
+    margin-left: 2vw;
+    margin-right: 5vw;
+    color: #5c41d6;
+}
+
+#top-text{
+    color: #5c41d6;
+} 
+
+button{
+    background-color: #5c41d6;
+    color: white;
+    font-size: 1rem;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-right:0px;
+    padding-right:0px;
+    width: 200%;
+    height: 70px;
+}
+button:hover{
+    background-color: purple;
+}
+
+#logo{
+    color: #5c41d6;
+    font-size: 4rem;
+    text-align: center;
+}
+
+
+
+
+
+
+/*Styles for video chat page only --right pane */
+
+#right-pane{
+    flex: 1;
+    height: 100vh;
+    display:flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+#self-stream{
+    border: 2px solid #5c41d67e;
+    width: 50%;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-left: 25px;
+
+}
+
+#remote-stream{
+    border: 2px solid #5c41d67e;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 50%;
+    height: 500px;
+}
+
+#self-stream video{
+    position: relative !important;
+}
+
+#remote-stream video{
+    height: auto;
+    position: relative !important;
+}
+
+

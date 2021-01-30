@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>VIDEO CHAT!! </title>
+        <link rel="stylesheet" href="styles.css"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.3.1.js"></script>
+        <script src="https://kit.fontawesome.com/4da6d27084.js" crossorigin="anonymous"></script>
+        <script src="AgoraRTC.js"></script>
+
+
+  </head>
+
+    <body onload="startSelfStream()">
+        
+        <div class="main-container">
+            <div id="left-pane">
+                <br>
+                <div id="logo">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <div id="top-text">
+                    <span style="font-size: 2rem;"><strong>Dragon Tutors</strong></span>
+                    <br>
+                    <span style="font-size: 1.2rem;">Video Chat</span>
+                </div>
+
+                <span id="result"></span>
+                <div id="controls">
+                   
+                    <button onclick=mute() id="muteAudio">
+                        <i class="fas fa-microphone"></i>
+                        <br>
+                        Mute
+                    </button>
+                    <br>
+                    <button onclick=stopVideo() id="muteVideo"> <!-- if extra time, add icons w/ slash-->
+                        <i class="fas fa-video"></i>
+                        <br>
+                        Stop Video
+                    </button>
+                    <br>
+                    <button id="invite" onclick=invite()> 
+                        <i class="fas fa-people-arrows"></i>
+                        <br>
+                        Invite
+                    </button>
+                    <br>
+
+                    <button id="shareScreen">Share screen</button>
+                    <br>
+                    <button onclick=closeWindow() id="leave"> 
+                        <i class="fas fa-sign-out-alt"></i>
+                        <br>
+                        Leave
+                    </button>
+<!--
+                    <br> <br> <br>
+                    <span>Participants: </span>
+                    <div id="participants"></div>
+-->
+                    
+                                    
+                </div>
+            </div>
+            <div id="right-pane">
+                <div id="self-stream">
+                </div> 
+                    <div id="remote-stream">
+                    </div>                   
+            </div>
+        </div>
+        <script>
+
+
+            function addVideoStream(elementId){
+                let streamDiv = document.createElement("div");
+                streamDiv.id = elementId;
+                streamDiv.style.height = "500px"
+
+                document.getElementById("remote-stream").appendChild(streamDiv);
+             //   addParticipant(elementId);
+
+            }
+
+
+
+        </script>
+    
+
+
+    </body>
+
+</html>

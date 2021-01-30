@@ -1,0 +1,61 @@
+<html>
+    <head> 
+        <title>LOGIN PAGE</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.3.1.js"></script>
+        <script src="https://kit.fontawesome.com/4da6d27084.js" crossorigin="anonymous"></script>
+    
+        <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
+        
+    
+    </head>
+
+    <body>
+        <div class="main-container">
+            <div id="login">
+                <br>
+                <span>Join a Video Chat!</span>
+                <br>
+                <input type="text" id="username" placeholder="Enter your name">
+                <br> 
+                <input type="text" id="channel" placeholder="Enter the channel name" value = "Default Channel">
+                <br>
+                <button id="join"><i class="fas fa-sign-in-alt"></i>
+
+                    Join</button>
+            </div>
+        </div>
+    </body>
+
+    <script>
+
+            // checks if username and channel name are both entered, opens video chat page
+        document.getElementById("join").onclick = function(){
+            let name = document.getElementById("username");
+            let channelname = document.getElementById("channel");
+
+            name.className = "";
+            channelname.className = "";
+            if(name.value == ""){
+                name.className = "invalid";
+                if (channelname.value == ""){
+                    channelname.className = "invalid";
+                }
+            }
+            else if (channelname.className.value == ""){
+                channelname.className.className = "invalid";
+            }
+            else{
+                channelName = channelname.value;
+                username = name.value;
+                sessionStorage.setItem("channel", channelName);
+                sessionStorage.setItem("name", username);
+                window.open("/videoChat.html");
+            }
+        }
+
+    </script>
+
+</html>
