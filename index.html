@@ -15,7 +15,6 @@
     <body>
         <div class="main-container">
             <div id="login">
-                <br>
                 <span>Join a Video Chat!</span>
                 <br>
                 <input type="text" id="username" placeholder="Enter your name">
@@ -24,7 +23,7 @@
                 <br>
                 <button id="join"><i class="fas fa-sign-in-alt"></i>
 
-                    Join --- changed</button>
+                    Join</button>
             </div>
         </div>
     </body>
@@ -52,7 +51,7 @@
                 username = name.value;
                 sessionStorage.setItem("channel", channelName);
                 sessionStorage.setItem("name", username);
-                window.open("https://hcheng2.github.io/Agora-Final-Project.github.io/videoChat.html");
+                window.open("videoChat.html"); // https://hcheng2.github.io/Agora-Final-Project.github.io/videoChat.html
             }
         }
 
