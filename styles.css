@@ -17,10 +17,6 @@ font-family: 'Changa', sans-serif;
     max-height: 100%;
 }
 
-
-
-
-
 /*Styles for log in page only */
 .invalid{
     border-color: red;
@@ -31,12 +27,10 @@ font-family: 'Changa', sans-serif;
     border-radius: 10px;
     margin: auto;
     width: 30vw;
-    height: 30vh;
-    padding: 10px;
+    padding: 100px;
     font-size: 2rem;
     margin-top: 15%;
-    padding-bottom: 50px;
-    box-shadow: 0 0 20px #5c41d6c7;
+    box-shadow: 0 0 500px #5c41d6c7;
 
 }
 
@@ -109,11 +103,6 @@ button:hover{
     text-align: center;
 }
 
-
-
-
-
-
 /*Styles for video chat page only --right pane */
 
 #right-pane{
@@ -121,12 +110,13 @@ button:hover{
     height: 100vh;
     display:flex;
     flex-direction: row;
-    text-align: center;
+    flex-wrap: wrap;
+    text-align: center;    
 }
 
 #self-stream{
     border: 2px solid #5c41d67e;
-    width: 50%;
+    width: 48%;
     height: 500px;
     margin-top: 20px;
     border-radius: 5px;
@@ -138,8 +128,9 @@ button:hover{
     border: 2px solid #5c41d67e;
     margin-left: 10px;
     margin-top: 20px;
-    width: 50%;
+    width: 48%;
     height: 500px;
+    border-radius: 5px;
 }
 
 #self-stream video{
@@ -151,4 +142,30 @@ button:hover{
     position: relative !important;
 }
 
+#self-screen{
+    border: 2px solid #5c41d67e;
+    width: 48%;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-left: 25px;
 
+}
+
+#self-screen video{
+    position: relative !important;
+}
+
+#remote-screen{
+    border: 2px solid #5c41d67e;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 48%;
+    height: 500px;
+    border-radius: 5px;
+
+}
+
+#remote-screen video{
+    position: relative !important;
+}
