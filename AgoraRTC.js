@@ -1,3 +1,5 @@
+let local = []; // stores the UIDs of local streams 
+
 let handleFail = function(err){
     console.log("Error: ", err);
 };
@@ -17,7 +19,6 @@ function addParticipant(name){
    document.getElementById("participants").innerHTML = participants;    
 }
 
-// 1 -- Create AgoraRTC object
 let appID = "2400b34296a64a5295504ebc9e2a741f";
 let client = AgoraRTC.createClient({
         mode: "live",
@@ -29,6 +30,7 @@ let username = "" , channelName = "";
 
 let globalStream;
 
+
 function startSelfStream(){
     numParticipants++;
 
@@ -38,58 +40,121 @@ function startSelfStream(){
 //    addParticipant(username);
 
     // 2--join
-    client.join(null, channelName, username, ()=>{
+    client.join(null, channelName, null, (uid)=>{
         let localStream = AgoraRTC.createStream({
             audio: true,
             video: true,
         });
+        local.push(String(uid));
+
         localStream.init(()=>{
               localStream.play("self-stream");
-              client.publish(localStream, handleFail);               // UNCOMMENT THIS!!!
+              client.publish(localStream, handleFail);              
         }, handleFail);
         globalStream = localStream;
     }, handleFail);
-
-    client.on("stream-added", function(evt){
-        // close window if there are too many participants 
-        if(numParticipants > 1){
-            alert("This channel is full. Please select a different channel");
-            window.close();            
-        }
-        numParticipants++;
-
-        client.subscribe(evt.stream, handleFail);
-    });
-    
-    client.on("stream-subscribed", function(evt){
-        let stream = evt.stream;
-        let streamId = String(stream.getId());
-        addVideoStream(streamId);
-        stream.play(streamId);
-    });
     
 }
 
+let screenClient = AgoraRTC.createClient({
+    mode: "live",
+    codec: "h264"  
+});
+screenClient.init(appID);
 
-// WRITE MYSELF --------> 
+let screenId ="";
 
-// or client.leave();   ????
+function shareScreen(){
+        screenClient.join(null, channelName, null, (uid)=>{
+            let screenStream = AgoraRTC.createStream({
+                streamID: username,
+                audio: false,
+                video: false,
+                screen: true,
+            });
+            screenId = String(uid);
+            local.push(String(uid));
+        //    alert(local);
+            
+            screenStream.init(()=>{
+                screenStream.play("self-screen");
+                screenClient.publish(screenStream, handleFail);              
+        }, handleFail);
+    }, handleFail);
+}
+/*
+screenClient.on("stream-added", function(evt){
+    
+    alert("screen added 1");
+
+});
+
+screenClient.on("stream-subscribed", function(evt){
+    let stream = evt.stream;
+    let streamId = String(stream.getId());
+    if(!localStreams.includes(streamId)) {
+        screenClient.subscribe(evt.stream, handleFail);
+
+        addScreenStream(streamId);
+        stream.play(streamId);    
+    }
 
 
-// Remove the video stream from the container.
+
+});*/
+
+
+client.on("stream-added", function(evt){
+    // close window if there are too many participants 
+    if(numParticipants > 3){
+        alert("This channel is full. Please select a different channel");
+        window.close();            
+    }
+    numParticipants++;
+
+    client.subscribe(evt.stream, handleFail);
+});
+
+client.on("stream-subscribed", function(evt){
+
+
+        let stream = evt.stream;
+        let id = String(stream.getId());
+    //  alert(streamId);
+  //  alert(local + " " + id + " "+ !(local.includes(id)));
+
+    if(!local.includes(id)) {
+
+        addVideoStream(id);
+        stream.play(id);
+    }
+});
+
+
+
+
+function closeWindow(){
+    window.close();
+}
+
+function invite(){
+    alert("Link: https://hcheng2.github.io/Agora-Final-Project.github.io/ \nChannel Name: " + channelName);
+}
+
+
 function removeVideoStream(elementId) {
     numParticipants--;
     let remoteDiv = document.getElementById(elementId);
     if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
 };
-// Remove the corresponding view when a remote user unpublishes.
+
 client.on("stream-removed", function(evt){
     let stream = evt.stream;
     let streamId = String(stream.getId());
     stream.close();
     removeVideoStream(streamId);
 });
-// Remove the corresponding view when a remote user leaves the channel.
+
 client.on("peer-leave", function(evt){
     let stream = evt.stream;
     let streamId = String(stream.getId());
@@ -125,24 +190,3 @@ function mute(){
 }
 
 
-function shareScreen(){
-    // Check if the browser supports screen sharing without an extension.
-   // Number.tem = ua.match(/(Chrome(?=\/))\/?(\d+)/i);
-   // if(parseInt(tem[2]) >= 72  && navigator.mediaDevices.getDisplayMedia ) {
-    // Create the stream for screen sharing.
-        screenStream = AgoraRTC.createStream({
-            streamID: String(globalStream.getId()),
-            audio: false,
-            video: false,
-            screen: true,
-        });
-   // }
-}
-
-function closeWindow(){
-    window.close();
-}
-
-function invite(){
-    alert("Link: __________________________ \nChannel Name: " + channelName);
-}
