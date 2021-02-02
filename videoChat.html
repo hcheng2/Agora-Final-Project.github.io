@@ -48,7 +48,7 @@
                     </button>
                     <br>
 
-                    <button id="shareScreen">Share screen</button>
+                    <button onclick=shareScreen() id="shareScreen">Share screen</button>
                     <br>
                     <button onclick=closeWindow() id="leave"> 
                         <i class="fas fa-sign-out-alt"></i>
@@ -65,22 +65,51 @@
                 </div>
             </div>
             <div id="right-pane">
-                <div id="self-stream">
-                </div> 
-                    <div id="remote-stream">
-                    </div>                   
+                <div id="self-stream"></div> 
+                <div id="remote-stream"></div>
+                <div id="self-screen"></div>
+                <div id="remote-screen"></div>
+
+<!--
+                <div id="self">
+                    <div id="self-sharescreen"></div>
+                </div>
+                <div id="remote">
+                    <div id="remote-sharescreen"></div>
+                </div>             -->      
             </div>
         </div>
         <script>
-
+            let remoteStreams = 0;
 
             function addVideoStream(elementId){
                 let streamDiv = document.createElement("div");
                 streamDiv.id = elementId;
                 streamDiv.style.height = "500px"
+                remoteStreams++;
 
-                document.getElementById("remote-stream").appendChild(streamDiv);
+                if(remoteStreams == 1){
+                    document.getElementById("remote-stream").appendChild(streamDiv);
+                    document.getElementById("remote-stream").className = "invalid";
+
+                }
+                if (remoteStreams == 2){
+                    document.getElementById("remote-screen").appendChild(streamDiv);
+                }
+               
+
              //   addParticipant(elementId);
+
+            }
+
+
+
+            function addScreenStream(elementId){
+                let streamDiv = document.createElement("div");
+                streamDiv.id = elementId;
+                streamDiv.style.height = "500px"
+
+                document.getElementById("remote-screen").appendChild(streamDiv);
 
             }
 
