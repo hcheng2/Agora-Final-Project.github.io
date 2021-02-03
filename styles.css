@@ -29,9 +29,9 @@ font-family: 'Changa', sans-serif;
     width: 30vw;
     padding: 100px;
     font-size: 2rem;
-    margin-top: 15%;
+    margin-top: 12%;
     box-shadow: 0 0 500px #5c41d6c7;
-
+    color:  #5c41d6;
 }
 
 input{
@@ -90,7 +90,7 @@ button{
     border-radius: 10px;
     margin-right:0px;
     padding-right:0px;
-    width: 200%;
+    width: 210%;
     height: 70px;
 }
 button:hover{
