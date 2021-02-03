@@ -13,17 +13,26 @@
     </head>
 
     <body>
+
         <div class="main-container">
             <div id="login">
-                <span>Join a Video Chat!</span>
+                <span style="font-size: 2.5rem;">
+                    <i class="fas fa-dragon"></i>
+                    <strong>Dragon Tutors</strong>
+                </span>
+                <span><br>Join a chat!</span>
                 <br>
                 <input type="text" id="username" placeholder="Enter your name">
                 <br> 
                 <input type="text" id="channel" placeholder="Enter the channel name" value = "Default Channel">
                 <br>
-                <button id="join"><i class="fas fa-sign-in-alt"></i>
+                <button id="join">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Join
+                </button>
+                <br> <br> 
+                <span style="font-size: 1rem;">Please use Google Chrome for the full experience.</span>
 
-                    Join</button>
             </div>
         </div>
     </body>
@@ -51,7 +60,7 @@
                 username = name.value;
                 sessionStorage.setItem("channel", channelName);
                 sessionStorage.setItem("name", username);
-                window.open("https://hcheng2.github.io/Agora-Final-Project.github.io/videoChat.html");
+                window.open("videoChat.html"); // https://hcheng2.github.io/Agora-Final-Project.github.io/videoChat.html
             }
         }
 
